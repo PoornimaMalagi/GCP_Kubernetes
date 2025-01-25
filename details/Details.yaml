@@ -1,20 +1,11 @@
 apiVersion: v1
-kind: ReplicaSet
+kind: Pod
 metadata:
-  name: details-app
+  name: nginx
+  namespace: default
+  labels:
+    app: nginx
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: details
-  template:
-    metadata:
-      labels:
-        app: details
-
-  spec:
-    containers:
-      - name: details
-        image: nginx:stable-alpine
-        ports:
-          - containerPort: 80
+  containers:
+    - name: latest
+      image: nginx:latest
